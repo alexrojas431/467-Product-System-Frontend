@@ -1,3 +1,20 @@
-.Middle{
+#middle {
     background-color: blue;
+}
+
+#search {
+    position: relative;
+}
+
+#search-box {
+    border: 1px solid black;
+    width: 250px;
+}
+
+#search-submit {
+    border: 1px solid black;
+}
+
+#gallery {
+    position: relative;
 }
