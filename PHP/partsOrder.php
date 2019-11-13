@@ -48,6 +48,8 @@ Part Description
 Part2 Description
 <button type="button">Add to Cart</button>
 </p>
-
+<?php
+	require('displayParts.php')
+?>
 </body>
 </html>
