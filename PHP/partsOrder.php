@@ -28,8 +28,7 @@
 			</select>
 		<input type = "text" name = "searchInput"/>
 		<input type = "submit" name = "submit" value = "Search!"/>
-
-	<br/><br/>
+		<br/><br/>
 		<input type = "reset" value = "Reset Search"/>
 	</form>
 
@@ -42,14 +41,14 @@
 			$dsn = 'mysql:host=blitz.cs.niu.edu;port=3306;dbname=csci467';
 			$username = 'student';
 			$password = 'student';
-			$pdo = new PDO($dsn, $username, $password);
+			$legacy = new PDO($dsn, $username, $password);
 		}
 		catch(PDOException $e)
 		{
 			echo 'Connection failed: '. $e->getMessage();
 	    }
 
-		whole($pdo);
+		whole($legacy);
        
 	?>
 

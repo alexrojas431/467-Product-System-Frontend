@@ -5,6 +5,11 @@
     height:100%;
 }
 
+#prodImg{
+    width: 128px;
+    height: 128px;
+}
+
 #desc{
     position: absolute;
     top: 0%;
