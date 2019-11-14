@@ -1,46 +1,20 @@
 <?php
-        #Establish database connection include functions.php file
-			try
-			{
-				$dsn = 'mysql:host=blitz.cs.niu.edu;port=3306;dbname=csci467';
-				$username = 'student';
-				$password = 'student';
-				$pdo = new PDO($dsn, $username, $password);
-			}
-			catch(PDOException $e)
-			{
-				echo 'Connection failed: '. $e->getMessage();
-            }
-            whole($pdo);
-            function whole($connection)
-            {
-                $sql = 'SELECT * FROM parts;';
-	            $query = $connection->query($sql);
+    function whole($connection)
+    {
+        $sql = 'SELECT pictureURL, description, price, weight FROM parts;';
+	    $query = $connection->query($sql);
 
-            	echo '<p>';
-            	echo '<table>';
-            	echo '<thead>';
-            	echo '<th> number </th>';
-            	echo '<th> description </th>';
-            	echo '<th> price </th>';
-            	echo '<th> weight </th>';
-            	echo '<th> pictureURL </th>';
-            	echo '</thead>';
 
-            	echo '<tbody>';
-            	while($result = $query->fetch(PDO::FETCH_ASSOC))
-            	{
-            		echo '<tr>';
-            		echo '<td> ' . $result['number'] . ' </td>';
-            		echo '<td> ' . $result['description'] . ' </td>';
-            		echo '<td> ' . $result['price'] . ' </td>';
-            		echo '<td> ' . $result['weight'] . ' </td>';
-            		echo '<td> ' . $result['pictureURL'] . ' </td>';
-            		echo '</tr>';
-            	}
+        while($result = $query->fetch(PDO::FETCH_ASSOC))
+        {
+            echo "<div id='product'>";
+            echo "<img src='" . $result['pictureURL'] . "'>";
+            echo "<span id='desc'>Description: ". $result["description"] ."</span>";
+            echo "<span id='price'>Price: $". $result["price"] ."</span>";
+            echo "<span id='weight'>Weight: ". $result["weight"] ."</span>";
+            echo "<button type='button'>Add to Cart</button>";
+            echo "</div>";
+        }
 
-            	echo '</tbody>';
-            	echo '</table>';
-            	echo '</p>';
-            }
+    }
 ?>

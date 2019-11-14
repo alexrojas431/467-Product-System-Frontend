@@ -1,0 +1,27 @@
+#product{
+    position: relative;
+    background-color:green;
+    width:50vw;
+    height:100%;
+}
+
+#desc{
+    position: absolute;
+    top: 0%;
+    background-color:yellow;
+    font-size: 20pt;
+}
+
+#price{
+    position: absolute;
+    top: 25%;
+    background-color:red;
+    font-size: 20pt;
+}
+
+#weight{
+    position: absolute;
+    top: 50%;
+    background-color:blue;
+    font-size: 20pt;
+}
