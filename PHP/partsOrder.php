@@ -31,10 +31,10 @@
 		<br/><br/>
 		<input type = "reset" value = "Reset Search"/>
 	</form>
-
+<br>
 	<?php
 		require('displayParts.php');
-		
+
 		#Establish database connection include functions.php file
 		try
 		{
@@ -49,9 +49,10 @@
 	    }
 
 		whole($legacy);
-       
+
 	?>
 
+<h1>Bottom Text</h1>
 </body>
 
 </html>

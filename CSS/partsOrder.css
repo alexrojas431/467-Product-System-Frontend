@@ -2,7 +2,7 @@
     position: relative;
     background-color:green;
     width:50vw;
-    height:100%;
+    height: 140px;
 }
 
 #prodImg{
@@ -29,4 +29,13 @@
     top: 50%;
     background-color:blue;
     font-size: 20pt;
+}
+
+div.scroll {
+ border-style: solid;
+ position: relative;
+ background-color: lightblue;
+ width: 900px;
+ height: 900px;
+ overflow: scroll;
 }
