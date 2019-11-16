@@ -6,7 +6,7 @@
     {
         $sql = 'SELECT pictureURL, description, price, weight FROM parts;';
 	    $query = $connection->query($sql);
-
+	echo "<div class='scroll'>";
         while($result = $query->fetch(PDO::FETCH_ASSOC))
         {
             echo "<div id='product'>";
@@ -17,6 +17,6 @@
                 echo "<button type='button'>Add to Cart</button>";
             echo "</div>";
         }
-
+	echo "</div>";
     }
 ?>
