@@ -6,7 +6,7 @@
 <style>
 div.order {
   width: 100%;
-  padding: 50px 0;
+  padding: 50px;
   text-align: center;
   background-color: blue;
   margin-top: 20px;
@@ -14,8 +14,8 @@ div.order {
 
 div.scroll {
  background-color: lightblue;
- width: 300px;
- height: 300px;
+ width: 800px;
+ height: 500px;
  overflow: scroll;
 }
 </style>
@@ -37,11 +37,31 @@ div.scroll {
 
  <input type="radio" name="order" value="orderThree"> Order 3<br>
 
+	 <?php
+                require('displayOrders.php');
+
+                #Establish database connection include functions.php file
+                try
+                {
+                        $dsn = 'mysql:host=courses;dbname=z1853137';
+                        $pdo = new PDO($dsn, 'z1853137', '1998Mar21');
+                }
+                catch(PDOException $e)
+                {
+                        echo 'Connection failed: '. $e->getMessage();
+            }
+
+                whole($pdo);
+
+        ?>
+
+</div>
+
 	<button type="button">Print Shipping Label</button>
 	<button type="button">Submit Invoice</button>
 	<button type="button">Print Packing List</button>
 	<button type="button">Update Inventory</button>
-</div>
+
 <ul>
   <li>Part2 <button type="button">Print Shipping Label</button> </li>
 </ul>
