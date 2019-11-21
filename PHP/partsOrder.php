@@ -9,6 +9,7 @@
 		}
 	</style>
 	<link rel="stylesheet" href="./partsOrder.css">
+	<link href="./shoppingCart.css">
 </head>
 
 <body>
@@ -33,6 +34,10 @@
 		<input type = "reset" value = "Reset Search"/>
 	</form>
 
+	<div id='shoppingCart'>
+		shopping cart
+	</div>
+
 	<?php
 		require('displayParts.php');
 		
@@ -47,9 +52,22 @@
 		catch(PDOException $e)
 		{
 			echo 'Connection failed: '. $e->getMessage();
-	    }
+		}
+		
+		//Connects to our own database
 
-		whole($pdo);
+		try
+		{
+			$dsn = 'mysql:host=courses;dbname=z1813783';
+			$username = 'z1813783';
+			$password = '1999Feb21';
+			$pdo2 = new PDO($dsn, $username, $password);
+		}
+		catch(PDOException $e)
+		{
+			echo 'Connection failed: '. $e->getMessage();
+	    }
+		whole($pdo, $pdo2);
        
 	?>
 
