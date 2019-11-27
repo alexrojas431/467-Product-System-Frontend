@@ -5,7 +5,7 @@
         } catch (PDOexception $e) { //catch the exception
                 echo "Connection to DB failed: " . $e->getMessage();
 	}
-	$subInv = "UPDATE inventory SET oQuantity=? WHERE partNum=?;";
+	$subInv = "UPDATE inventory SET oQuantity+=? WHERE partNum=?;";
 	$subInvResult = $pdo->prepare($subInv);
 	$subInvResult->execute(array($_POST['OQ'], $_POST['pNum']));
 header("Refresh:1; url=/~z1860858/workerPage.php");
