@@ -8,5 +8,5 @@
 	$subInv = "UPDATE orderHistory SET status='shipped' WHERE orderID=?;";
 	$subInvResult = $pdo->prepare($subInv);
 	$subInvResult->execute(array($_POST['OID']));
-header("Refresh:5; url=/~z1853137/467admin.php");
+header("Refresh:1; url=/~z1860858/workerPage.php");
 ?>
