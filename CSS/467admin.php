@@ -15,7 +15,7 @@
 	} catch (PDOexception $e) { //catch the exception
 		echo "Connection to DB failed: " . $e->getMessage();
 	}
-		$prepared = $pdo->query('SELECT minW, maxW, cost FROM weight');
+		$prepared = $pdo->query('SELECT * FROM weight');
 	        echo "<table id='Weightbrackets' border='1'>
 		<tr>
 		<th>min weight</th>
@@ -28,17 +28,6 @@
 			<td>{$minW}</td>
 			<td>{$maxW}</td>
 			<td>{$cost}</td></tr>";
-}
-$prepared = $pdo->query('SELECT fee, feetype FROM handling');
-	        echo "<table id='handling' border='1'>
-		<tr>
-		<th>handling fee</th>
-		<th>fee num</tr>";
-
-		while ($srow = $prepared->fetch()){
-			extract($srow);
-			echo "<tr><td>{$fee}</td>
-			<td>{$feetype}</td></tr>";
 }
 $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email, dateOr, status FROM orderHistory
 			INNER JOIN inventory ON orderHistory.partNum = inventory.partNum
@@ -68,22 +57,29 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 ?>
 
 <body>
-	<h1>Change the weight bracket fee add in weight value then fee amount</h1>
+	<h3>Change shipping and handling fees based on lower or upper weight limit</h3>
+	<h3>Enter the weight bound in the left opening and the cost in the right</h3>
 	<form method="POST" action="/~z1853137/changeWeight.php">
 		<select name="WType">	
 			<option value="minW">minW</option>
 			<option value="maxW">maxW</option>	
 		</select>
-		<input type="number" step="0.01" name="wValue"/>	
-		<input type="number" step="0.01" name="cost"/>
+		<input type="text" name="wValue"/>	
+		<input type="text" name="cost"/>
 		<input name="bracketchange" type="submit" />	
 		</form>
 </body>
 <body>
-	<h1>Change the handling fee</h1>
-	<form method="POST" action="/~z1853137/changefee.php">		
-		<input type="number" step="0.01" name="fee"/>
-		<input name="feechange" type="submit" />	
+	<h3>Change the weight brackets</h3>
+	<h3>Enter in the weight value either min or max opposite of the one you want changed</h3>
+	<form method="POST" action="/~z1853137/changeWeightBracket.php">
+		<select name="WType">	
+			<option value="minW">minW</option>
+			<option value="maxW">maxW</option>	
+		</select>
+		<input type="text" name="wValue"/>	
+		<input type="text" name="wChange"/>
+		<input name="bracketchange" type="submit" />	
 		</form>
 </body>
 <body>
@@ -95,7 +91,7 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 </tr>
 <tr>
   <td>earliest date</td>
-  <td><input name="datemin" type="range" id="datemin"></td>
+  <td><input name="datemin" type="text" id="datemin"></td>
 </tr>
 <tr>
   <td>latest date</td>
