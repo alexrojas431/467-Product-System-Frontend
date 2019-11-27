@@ -2,6 +2,7 @@
 <head>
 <title>Admin Page</title>
 <h1>Admin Interface</h1>
+</head>
 <body>
 <?php
 
@@ -36,10 +37,10 @@ $prepared = $pdo->query('SELECT fee, feetype FROM handling');
 
 		while ($srow = $prepared->fetch()){
 			extract($srow);
-			echo "<tr><td><input type='handling' name= 'fee' value= {$fee}></td>
+			echo "<tr><td>{$fee}</td>
 			<td>{$feetype}</td></tr>";
 }
-$prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email FROM orderHistory
+$prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email, dateOr, status FROM orderHistory
 			INNER JOIN inventory ON orderHistory.partNum = inventory.partNum
 			INNER JOIN pInfo ON orderHistory.email = pInfo.email
 			WHERE orderHistory.orderID');
@@ -49,7 +50,9 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 		<th>part number</th>
 		<th>part Description</th>
 		<th>price</th>
-		<th>email</th></tr>";
+		<th>email</th>
+		<th>date processed</th>
+		<th>shippment status</th></tr>";
 
 		while ($srow = $prepared->fetch()){
 			extract($srow);
@@ -58,11 +61,12 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 			<td>{$partNum}</td>
 			<td>{$partDesc}</td>
 			<td>{$price}</td>
-			<td>{$email}</td></tr>";
+			<td>{$email}</td>
+			<td>{$dateOr}</td>
+			<td>{$status}</td></tr>";
 }
 ?>
 
-</body></form>
 <body>
 	<h1>Change the weight bracket fee add in weight value then fee amount</h1>
 	<form method="POST" action="/~z1853137/changeWeight.php">
@@ -70,15 +74,15 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 			<option value="minW">minW</option>
 			<option value="maxW">maxW</option>	
 		</select>
-		<input type="text" name="wValue"/>	
-		<input type="text" name="cost"/>
+		<input type="number" step="0.01" name="wValue"/>	
+		<input type="number" step="0.01" name="cost"/>
 		<input name="bracketchange" type="submit" />	
 		</form>
 </body>
 <body>
 	<h1>Change the handling fee</h1>
 	<form method="POST" action="/~z1853137/changefee.php">		
-		<input type="text" name="fee"/>
+		<input type="number" step="0.01" name="fee"/>
 		<input name="feechange" type="submit" />	
 		</form>
 </body>
@@ -91,7 +95,7 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 </tr>
 <tr>
   <td>earliest date</td>
-  <td><input name="datemin" type="text" id="datemin"></td>
+  <td><input name="datemin" type="range" id="datemin"></td>
 </tr>
 <tr>
   <td>latest date</td>
@@ -102,6 +106,7 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
   <td><input name="SubmitBtn" type="submit" id="SubmitBtn" value="Submit"></td>
 </tr>
 </table>
+</form>
 </body>
 <body>
 	<form id="priceR" name="priceSearch" method="POST" action="/~z1853137/priceSearch.php" >
@@ -122,17 +127,17 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
   <td><input name="SubmitBtn" type="submit" id="SubmitBtn" value="Submit"></td>
 </tr>
 </table>
+</form>
 </body>
 <body>
 	<h1>Search by status</h1>
-	<form method="POST" action="/~z1853137/status.php">
-		<select name="search">	
-			<option value="shipped">shipped</option>
-			<option value="authorized">authorized</option>	
-		</select>	
-		<input name="bracketchange" type="submit" />	
+	<form method="POST" action="/~z1853137/statsearch.php">
+		<select name="status">	
+			<option value="authorized">authorized</option>
+			<option value="shipped">shipped</option>	
+		</select>
+		<input name="statSearch" type="submit" />	
 		</form>
-</body>
 </body>
 </html>
 
