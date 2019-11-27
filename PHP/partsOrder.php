@@ -13,25 +13,11 @@
 </head>
 
 <body>
-	<form action="">
-		Search: <input type="text" name="search">
-		<input type="submit" value="Submit">
-	</form>
-
 	<h2>Search Form</h2>
-	<form method = "POST" action = "http://students.cs.niu.edu/~z1860858/songSearch.php">
-			Search By:
-			<select name = "searchby">
-				<option value= "partName" >Part Name</option>
-				<option value= "partNum" >Part Number</option>
-				<option value= "partWeight" >Part Weight</option>
-				<option value= "placeholder" >placeholder</option>
-			</select>
+	<form method = "POST" action = "http://students.cs.niu.edu/~z1853137/partSearch.php">
+			Search By PartNum:
 		<input type = "text" name = "searchInput"/>
 		<input type = "submit" name = "submit" value = "Search!"/>
-
-	<br/><br/>
-		<input type = "reset" value = "Reset Search"/>
 	</form>
 
 	<div id='shoppingCart'>
