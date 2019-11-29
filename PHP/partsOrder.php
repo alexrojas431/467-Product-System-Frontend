@@ -27,34 +27,6 @@
 	<?php
 		require('displayParts.php');
 		
-		#Establish database connection include functions.php file
-		try
-		{
-			$dsn = 'mysql:host=blitz.cs.niu.edu;port=3306;dbname=csci467';
-			$username = 'student';
-			$password = 'student';
-			$pdo = new PDO($dsn, $username, $password);
-		}
-		catch(PDOException $e)
-		{
-			echo 'Connection failed: '. $e->getMessage();
-		}
-		
-		//Connects to our own database
-
-		try
-		{
-			$dsn = 'mysql:host=courses;dbname=z1813783';
-			$username = 'z1813783';
-			$password = '1999Feb21';
-			$pdo2 = new PDO($dsn, $username, $password);
-		}
-		catch(PDOException $e)
-		{
-			echo 'Connection failed: '. $e->getMessage();
-	    }
-		whole($pdo, $pdo2);
-       
 	?>
 
 </body>

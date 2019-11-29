@@ -39,7 +39,14 @@
 
 #quantity{
     position: absolute;
-    top: 80%;
+    top: 70%;
+    right: 0%;
     background-color:purple;
+    font-size: 20pt;
+}
+
+#buttons{
+    position: absolute;
+    top: 85%;
     font-size: 20pt;
 }
