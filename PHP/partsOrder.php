@@ -34,6 +34,9 @@
 	<div id='shoppingCart'>
 		shopping cart
 		<?php echo $status; ?>
+		<a href="./cartPage.php">
+			<button> Finalize and pay for order </button>
+		</a>
 	</div>
 
 </body>

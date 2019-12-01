@@ -68,6 +68,7 @@
             $cartArray = array(
                 $result["number"]=>array(
                     'number'=>$result["number"],
+                    'description'=>$result["description"],
                     'price'=>$result["price"],
                     'quantity'=>$result2["quantity"],
                     'image'=>$result["pictureURL"])
@@ -84,6 +85,8 @@
 // Checks that the particular part was submitted into the cart
     if (isset($_POST['part']) && $_POST['part']!="")
     {
+
+        
         
 echo $status;
         if(empty($_SESSION["shopping_cart"]))
