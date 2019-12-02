@@ -1,7 +1,5 @@
 <html>
 
-
-
 <head>
 
  <title>Shopping Cart</title>

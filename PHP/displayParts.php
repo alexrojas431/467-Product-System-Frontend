@@ -60,7 +60,6 @@
                 echo "<span id='quantity'>Quantity: " . $result2["quantity"] ."</span>";
                 echo "<div id='buttons'> <button type='submit' class='buy'> Add to cart </button> </div>";
                 echo "</form>";
-
             echo "</div>";
 
         // Also put every part into an array for future reference
@@ -95,7 +94,7 @@ echo $status;
             $status = "<div class='box'>Product is added to your cart!</div>";
 echo $status;
         }
-
+      
         else
         {
             $array_keys = array_keys($_SESSION["shopping_cart"]);
