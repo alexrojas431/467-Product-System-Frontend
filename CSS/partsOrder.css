@@ -1,4 +1,4 @@
-#product{
+.product{
     position: relative;
     background-color:green;
     width:50vw;
@@ -10,6 +10,17 @@
     height: 128px;
 }
 
+#shoppingCart{
+    position: absolute;
+    background-color: pink;
+    right: 0%;
+    top: 0%;
+}
+
+#img{
+    position: relative;
+
+}
 #desc{
     position: absolute;
     top: 0%;
@@ -31,6 +42,20 @@
     font-size: 20pt;
 }
 
+#quantity{
+    position: absolute;
+    top: 70%;
+    right: 0%;
+    background-color:purple;
+    font-size: 20pt;
+}
+
+#buttons{
+    position: absolute;
+    top: 85%;
+    font-size: 20pt;
+}
+
 div.scroll {
  border-style: solid;
  position: relative;
@@ -39,3 +64,4 @@ div.scroll {
  height: 900px;
  overflow: scroll;
 }
+

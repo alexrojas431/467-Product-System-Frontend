@@ -9,6 +9,7 @@
 		}
 	</style>
 	<link rel="stylesheet" href="./partsOrder.css">
+	<link href="./shoppingCart.css">
 </head>
 
 <body onload="showInfo()">
@@ -29,6 +30,7 @@
 		<input type = "text" name = "searchInput"/>
 		<input type = "submit" name = "search" value = "Search!"/>
 		<input type = "reset" value = "Reset Search"/>
+
 	</form>
 <br>
 	Sort By:
@@ -41,26 +43,24 @@
 	<button>Sort List</button>
 <br><br>
 	<?php
+		
+		//Start a session to store cookies for the shopping cart
+		//This allows the stored cookies to be used in other pages
+		session_start();
+		
+		//This file will display every part into the webpage
 		require('displayParts.php');
-
-		#Establish database connection include functions.php file
-		try
-		{
-			$dsn = 'mysql:host=blitz.cs.niu.edu;port=3306;dbname=csci467';
-			$username = 'student';
-			$password = 'student';
-			$legacy = new PDO($dsn, $username, $password);
-		}
-		catch(PDOException $e)
-		{
-			echo 'Connection failed: '. $e->getMessage();
-	    }
-
-		whole($legacy);
-
+  
 	?>
 
-<h1>Bottom Text</h1>
+	<div id='shoppingCart'>
+		shopping cart
+		<?php echo $status; ?>
+		<a href="./cartPage.php">
+			<button> Finalize and pay for order </button>
+		</a>
+	</div>
+
 </body>
 
 </html>
