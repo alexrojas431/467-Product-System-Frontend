@@ -20,23 +20,9 @@ $status="";
 if (isset($_POST['action']) && $_POST['action']=="remove"){
   if(!empty($_SESSION["shopping_cart"])) {
       foreach($_SESSION["shopping_cart"] as $key => $value) {
-          echo "key: ". $key;
-          echo "<br/>";
-          $test = $value["number"];
-          echo "array part number: ". $test;
-          echo "<br/>";
-          $test = $test - 2; 
-          echo "array part number - 2: ". $test;
-          echo "<br/>";
-          echo "part number on remove: ". $_POST["part"];
-          echo "<br/>";
-          echo "<br/>";
-          echo "<br/>";
 
         if($_POST["part"] == $value["number"]){
-
-
-            unset($_SESSION["shopping_cart"][$key]);
+          unset($_SESSION["shopping_cart"][$key]);
 
           $status = "<div class='box' style='color:red;'>
           Product is removed from your cart!</div>";
