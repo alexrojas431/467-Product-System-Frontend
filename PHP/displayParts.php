@@ -62,16 +62,6 @@
                 echo "</form>";
             echo "</div>";
 
-        // Also put every part into an array for future reference
-
-            $cartArray = array(
-                $result["number"]=>array(
-                    'number'=>$result["number"],
-                    'description'=>$result["description"],
-                    'price'=>$result["price"],
-                    'quantity'=>$result2["quantity"],
-                    'image'=>$result["pictureURL"])
-                );
 
             // foreach($cartArray as $cart){echo $cart.'<br>';}
 
@@ -85,8 +75,30 @@
     if (isset($_POST['part']) && $_POST['part']!="")
     {
 
+        $part = $_POST["part"];
+echo $part;
+        //Legacy database
+        $sql = 'SELECT number, pictureURL, description, price, weight FROM parts WHERE number ="'. $part .'";';
+        $query = $pdo->query($sql);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
         
+    //Our own database
+        $sql2 = 'SELECT quantity FROM inventory WHERE partNum ="'. $part .'";';
+        $query2 = $pdo2->query($sql2);
+        $result2 = $query2->fetch(PDO::FETCH_ASSOC);
         
+    // Also put every part into an array for future reference
+
+        $cartArray = array(
+            $result["number"]=>array(
+                'number'=>$result["number"],
+                'description'=>$result["description"],
+                'price'=>$result["price"],
+                'quantity'=>1,
+                'image'=>$result["pictureURL"]
+                )
+        );
+
 echo $status;
         if(empty($_SESSION["shopping_cart"]))
         {
@@ -98,6 +110,7 @@ echo $status;
         else
         {
             $array_keys = array_keys($_SESSION["shopping_cart"]);
+
             if(in_array($_POST["part"],$array_keys))
             {
                 $status = "<div class='box' style='color:red;'>

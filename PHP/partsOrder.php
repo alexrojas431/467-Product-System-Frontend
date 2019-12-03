@@ -13,6 +13,10 @@
 </head>
 
 <body onload="showInfo()">
+
+   <a href="./navigation.php"> <button> Back to Home </button> </a>
+   <br/>
+
 	<form action="">
 		Search: <input type="text" name="search">
 		<input type="submit" value="Submit">
