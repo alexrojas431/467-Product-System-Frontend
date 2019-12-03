@@ -20,17 +20,22 @@ $status="";
 if (isset($_POST['action']) && $_POST['action']=="remove"){
   if(!empty($_SESSION["shopping_cart"])) {
       foreach($_SESSION["shopping_cart"] as $key => $value) {
-        if($_POST["part"] == $key){
           echo "key: ". $key;
+          echo "<br/>";
           $test = $value["number"];
-          echo "test: ". $test;
-          $test = $test - 1; 
-          echo "test: ". $test;
-          echo "number: ". ($value["number"]-1);
-          echo "number: ". $test;
-          echo "part: ". $_POST["part"];
+          echo "array part number: ". $test;
+          echo "<br/>";
+          $test = $test - 2; 
+          echo "array part number - 2: ". $test;
+          echo "<br/>";
+          echo "part number on remove: ". $_POST["part"];
+          echo "<br/>";
+          echo "<br/>";
+          echo "<br/>";
 
-          if($test == $_POST["part"])
+        if($_POST["part"] == $value["number"]){
+
+
             unset($_SESSION["shopping_cart"][$key]);
 
           $status = "<div class='box' style='color:red;'>

@@ -4,6 +4,8 @@
 <h1>Admin Interface</h1>
 </head>
 <body>
+   <a href="./navigation.php"> <button> Back to Home </button> </a>
+   <br/>
 <?php
 
 

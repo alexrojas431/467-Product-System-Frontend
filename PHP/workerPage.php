@@ -23,6 +23,10 @@ div.scroll {
 </head>
 <h1>Employees Only Page </h1>
 <body> // onload="showInfo()">
+   
+   <a href="./navigation.php"> <button> Back to Home </button> </a>
+   <br/>
+
 <h2>Warehouse Section </h2>
 <h3>List of Orders: </h3>
 <div class="scroll">
