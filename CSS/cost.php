@@ -16,11 +16,12 @@
         }catch (PDOexception $e) { //catch the exception
                 echo "Connection to DB failed: " . $e->getMessage();
 		}
-			$weightBracket = "SELECT cost FROM weight WHERE minW>' . srow["weight"] . ' AND maxW<= ' . srow["weight"] . ';";
+			$TotalW = $srow['weight']*$_POST['oQuantity']
+			$weightBracket = "SELECT cost FROM weight WHERE minW>' . $TotalW . ' AND maxW<= ' . srow["weight"] . ';";
 			$weightBResult = $pdo->prepare($weightBracket);
 			$weightBResult->execute(array($_POST['Number']));
-			$Total = $weightBResult_>fetch();
-			$TotalP = $srow['price'] + $Total['cost'];
+			$Total = $weightBResult->fetch();
+			$TotalP = $srow['price']*$_POST['oQuantity'] + $Total['cost'];
 			
 			$dateOr = 'Current time: ' . date('Y-m-d H:i:s') .;
 			try { //exception thrown if something happens
@@ -31,7 +32,7 @@
 		}
 			$submitOrder = "INSERT INTO orderHistory(partNum, oQuantity, partDesc, price, email, dateOr, status)
     VALUES
-	(?, ?, ?, ?, ?, ?, ?);
+	(?, ?, ?, ?, ?, ?, ?);"
 			$orderResult = $pdo->prepare($submitOrder);
 			$orderResult->execute(array($_POST['number'],$_POST['oQuantity'],$srow['description'],$TotalP,$_POST['email'],dateOr,'authroized'));
 ?>
