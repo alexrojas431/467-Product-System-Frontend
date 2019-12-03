@@ -1,4 +1,4 @@
-<php
+<?php
 	try { //exception thrown if something happens
 			$dsn = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
 			$pdo = new PDO($dsn, "student", "student");
