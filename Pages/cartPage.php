@@ -46,8 +46,8 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 
 <div class="cart">
 <?php
-if(isset($_SESSION["shopping_cart"])){
-    $total_price = 0;
+  if(isset($_SESSION["shopping_cart"])){
+      $total_price = 0;
 ?> 
 <table class="table">
 <tbody>
@@ -60,7 +60,7 @@ if(isset($_SESSION["shopping_cart"])){
 </tr>
 
 <?php 
-foreach ($_SESSION["shopping_cart"] as $product){
+  foreach ($_SESSION["shopping_cart"] as $product){
 ?>
 
 <tr>
@@ -106,8 +106,8 @@ foreach ($_SESSION["shopping_cart"] as $product){
 </tr>
 
 <?php
-$total_price += ($product["price"]*$product["quantity"]);
-}
+  $total_price += ($product["price"]*$product["quantity"]);
+  }
 ?>
 
 <tr>
@@ -120,32 +120,27 @@ $total_price += ($product["price"]*$product["quantity"]);
 </tbody>
 </table> 
 
-  <?php
-}else{
- echo "<h3>Your cart is empty!</h3>";
- }
+<?php
+  }
+  else{
+  echo "<h3>Your cart is empty!</h3>";
+  }
 ?>
 </div>
  
 <div style="clear:both;"></div>
  
 <div class="message_box" style="margin:10px 0px;">
-<?php echo $status; ?>
+  <?php echo $status; ?>
 </div>
-
-Quantity:
-
-<input type="text" name="qty"> <br>
-
-Total sum: Price * qty <br>
-
-Total weight: Weight * qty <br>
 
 <a href="./partsOrder.php">
   <button> Continue Shopping </button>
 </a>
 
-<button type="button">Proceed to Purchase</button>
+<a href="./purchasePage.php">
+  <button> Proceed to Purchase </button>
+</a>
 
 </body>
 
