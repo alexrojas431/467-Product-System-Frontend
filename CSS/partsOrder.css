@@ -1,7 +1,40 @@
+body{
+    background-color: black;
+    color: yellow;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button{
+    background-color: black;
+    color: yellow;
+    border-radius: 10px;
+}
+
+#shoppingCart{
+    position: absolute;
+    border: 1px solid yellow;
+    right: 49vw;
+    top: 0%;
+    text-align: center;
+}
+
+#shop {
+    position: absolute;
+    left: 20vw;
+    top: 9vw;
+    background-color: black;
+    border: 5px solid white;
+    border-style: inset;
+    overflow-y: scroll;
+    width: 60%;
+    height: 80%;
+}
+
 .product{
     position: relative;
-    background-color:green;
-    width:50vw;
+    border-top: 2px solid yellow;
+    border-bottom: 2px solid yellow;
+    width: 58vw;
     height: 140px;
 }
 
@@ -10,58 +43,47 @@
     height: 128px;
 }
 
-#shoppingCart{
-    position: absolute;
-    background-color: pink;
-    right: 0%;
-    top: 0%;
-}
-
 #img{
     position: relative;
-
+    border: 5px solid red;
+    border-style: inset;
 }
+
 #desc{
     position: absolute;
     top: 0%;
-    background-color:yellow;
     font-size: 20pt;
 }
 
 #price{
     position: absolute;
     top: 25%;
-    background-color:red;
     font-size: 20pt;
 }
 
 #weight{
     position: absolute;
     top: 50%;
-    background-color:blue;
     font-size: 20pt;
 }
 
 #quantity{
     position: absolute;
-    top: 70%;
-    right: 0%;
-    background-color:purple;
+    top: 75%;
     font-size: 20pt;
 }
 
 #buttons{
     position: absolute;
-    top: 85%;
+    top: 75%;
+    right: 0%;
     font-size: 20pt;
 }
 
-div.scroll {
- border-style: solid;
- position: relative;
- background-color: lightblue;
- width: 900px;
- height: 900px;
- overflow: scroll;
+#buy{
+    width: 100%;
 }
 
+#buy:hover{
+    background-color: grey;
+}

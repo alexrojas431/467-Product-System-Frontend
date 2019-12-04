@@ -29,6 +29,8 @@
 
     // Display every part into the store page
         
+    echo "<div id='shop'>";
+    
     for($i = 1; $i < 150; $i++)
     {
     //Legacy database
@@ -58,15 +60,14 @@
                 echo "<span id='weight'>Weight: " . $result["weight"] ."</span>";
                 
                 echo "<span id='quantity'>Quantity: " . $result2["quantity"] ."</span>";
-                echo "<div id='buttons'> <button type='submit' class='buy'> Add to cart </button> </div>";
+                echo "<div id='buttons'> <button type='submit' id='buy'> Add to cart </button> </div>";
                 echo "</form>";
             echo "</div>";
-
-
-            // foreach($cartArray as $cart){echo $cart.'<br>';}
-
         }
+       
     }
+    
+    echo "</div>";
 
 // Message on whether the user decided to buy part
     $status="";
@@ -76,7 +77,6 @@
     {
 
         $part = $_POST["part"];
-echo $part;
         //Legacy database
         $sql = 'SELECT number, pictureURL, description, price, weight FROM parts WHERE number ="'. $part .'";';
         $query = $pdo->query($sql);
@@ -99,12 +99,10 @@ echo $part;
                 )
         );
 
-echo $status;
         if(empty($_SESSION["shopping_cart"]))
         {
             $_SESSION["shopping_cart"] = $cartArray;
             $status = "<div class='box'>Product is added to your cart!</div>";
-echo $status;
         }
       
         else
@@ -115,14 +113,12 @@ echo $status;
             {
                 $status = "<div class='box' style='color:red;'>
                 Product is already added to your cart!</div>"; 
-echo $status;
             }
             
             else
             {
                 $_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
                 $status = "<div class='box'>Product is added to your cart!</div>";
-echo $status;
             }         
         }
     }

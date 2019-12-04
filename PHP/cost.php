@@ -32,7 +32,7 @@
 		}
 			$submitOrder = "INSERT INTO orderHistory(partNum, oQuantity, partDesc, price, email, dateOr, status)
     VALUES
-	(?, ?, ?, ?, ?, ?, ?);"
+	(?, ?, ?, ?, ?, ?, ?);";
 			$orderResult = $pdo->prepare($submitOrder);
 			$orderResult->execute(array($_POST['number'],$_POST['oQuantity'],$srow['description'],$TotalP,$_POST['email'],dateOr,'authroized'));
 ?>
