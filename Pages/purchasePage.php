@@ -1,9 +1,10 @@
 <html>
 <head>
-<title>Purchasing Details</title>
+    <title>Purchasing Details</title>
 </head>
 
 <body>
+
 <h1>Purchasing Info</h1>
 
 Total Price is:
