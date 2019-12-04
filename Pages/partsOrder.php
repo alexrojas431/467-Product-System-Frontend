@@ -2,14 +2,8 @@
 
 <head>
 	<title>Parts Order Home Page </title>
-	<style>
-		/* Style sheet sets width of all images to 100%: */
-		img {
-			width:128px;height:128px;
-		}
-	</style>
+	
 	<link rel="stylesheet" href="./partsOrder.css">
-	<link href="./shoppingCart.css">
 </head>
 
 <body>
