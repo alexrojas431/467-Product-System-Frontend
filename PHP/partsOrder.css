@@ -1,0 +1,41 @@
+#product{
+    position: relative;
+    background-color:green;
+    width:50vw;
+    height: 140px;
+}
+
+#prodImg{
+    width: 128px;
+    height: 128px;
+}
+
+#desc{
+    position: absolute;
+    top: 0%;
+    background-color:yellow;
+    font-size: 20pt;
+}
+
+#price{
+    position: absolute;
+    top: 25%;
+    background-color:red;
+    font-size: 20pt;
+}
+
+#weight{
+    position: absolute;
+    top: 50%;
+    background-color:blue;
+    font-size: 20pt;
+}
+
+div.scroll {
+ border-style: solid;
+ position: relative;
+ background-color: lightblue;
+ width: 900px;
+ height: 900px;
+ overflow: scroll;
+}

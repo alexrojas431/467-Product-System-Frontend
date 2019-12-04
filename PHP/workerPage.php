@@ -22,20 +22,10 @@ div.scroll {
 
 </head>
 <h1>Employees Only Page </h1>
-<body> // onload="showInfo()">
+<body>
 <h2>Warehouse Section </h2>
 <h3>List of Orders: </h3>
 <div class="scroll">
- <input type="radio" onclick="showInfo()" name="order" value="orderOne"> Order 1<br>
- <div class="order" id="orderDIV" style="display:none">Order Information Here</div>
-
- <button onclick="showInfo()">Order 1</button> <br>
- <div class="order" id="orderDIV" style="display:none">Other Order Information Here</div>
-
- <input type="radio" onclick="showInfo()"  name="order" value="orderTwo"> Order 2<br>
- <div class="order" id="orderDIV" style="display:none">Another Order's Information Here</div>
-
- <input type="radio" name="order" value="orderThree"> Order 3<br>
 
 	 <?php
                 require('displayOrders.php');
@@ -57,14 +47,20 @@ div.scroll {
 
 </div>
 
-	<button type="button">Print Shipping Label</button>
-	<button type="button">Submit Invoice</button>
-	<button type="button">Print Packing List</button>
-	<button type="button">Update Inventory</button>
+	<button type="button">Print Shipping Label</button><br>
 
-<ul>
-  <li>Part2 <button type="button">Print Shipping Label</button> </li>
-</ul>
+	<form method="post" action="/~z1860858/submitInvoice.php">
+	<input type="text" name="OID">
+	<button type="submit">Submit Invoice</button><br>
+	</form>
+
+	<button type="button">Print Packing List</button><br>
+
+	<form method="post" action="/~z1860858/updateInvens.php">
+	Quantity: <input type="text" name="OQ">
+	Part Number: <input type="text" name="pNum">
+	<button type="submit">Update Inventory</button><br>
+	</form>
 
 <script>
 function showInfo() {
@@ -79,13 +75,13 @@ function showInfo() {
 
 <h2>Receiving Desk<h2>
 <h3>Receieved Products<h3>
-Part Name:
-<input type="text" name="partName"><br>
-Part ID:
-<input type="text" name="partID"><br>
-Quantity:
-<input type="text" name="qty"><br>
-<button type="button">Update Inventory</button>
+	<form method="post" action="/~z1860858/updateInvenr.php">
+	Quantity:
+	<input type="text" name="OQ"><br>
+	Part Number:
+	<input type="text" name="pNum"><br>
+	<button type="submit">Update Inventory</button>
+	</form>
 
 <h2>Administrator<h2>
 <button type"button">Edit Shipping and Handling Fees</button>
