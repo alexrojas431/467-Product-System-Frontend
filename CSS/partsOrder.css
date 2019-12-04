@@ -49,6 +49,11 @@ button{
     border-style: inset;
 }
 
+img{
+    width: 128px;
+    height: 128px;
+}
+
 #desc{
     position: absolute;
     top: 0%;

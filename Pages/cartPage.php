@@ -3,14 +3,14 @@
 <head>
 
  <title>Shopping Cart</title>
+	
+ <link rel="stylesheet" href="./cartPage.css">
 
 </head>
 
 <body>
 
 <h1>Cart</h1>
-
-Receive image and other product info from when directed to this page
 
 <br>
 
@@ -37,7 +37,6 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
   foreach($_SESSION["shopping_cart"] as &$value){
     if($value['number'] === $_POST["part"]){
         $value['quantity'] = $_POST["quantity"];
-        echo $value;
         break; // Stop the loop after we've found the product
     }
   }
@@ -47,7 +46,9 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 <div class="cart">
 <?php
   if(isset($_SESSION["shopping_cart"])){
-      $total_price = 0;
+  // Declare total variables to be used at the end
+      $total_uprice = 0;
+      $total_uweight = 0;
 ?> 
 <table class="table">
 <tbody>
@@ -56,7 +57,9 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
   <td>Item Description</td>
   <td>Quantity</td>
   <td>Unit Price</td>
-  <td>Items Total</td>
+  <td>Total U. Price</td>
+  <td>Unit Weight</td>
+  <td>Total U. Weight</td>
 </tr>
 
 <?php 
@@ -77,7 +80,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
     </form>
   </td>
 
-  <td>
+  <td align="center">
     <form method='post' action=''>
 
     <input type='hidden' name='part' value="<?php echo $product["number"]; ?>" />
@@ -99,20 +102,29 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
     </form>
   </td>
 
-  <td><?php echo "$".$product["price"]; ?></td>
+  <td align="center"><?php echo "$".$product["price"]; ?></td>
 
-  <td><?php echo "$".$product["price"]*$product["quantity"]; ?></td>
+  <td align="center"><?php echo "$".$product["price"]*$product["quantity"]; ?></td>
+
+  <td align="center"><?php echo $product["weight"]."g"; ?></td>
+
+  <td align="center"><?php echo $product["weight"]*$product["quantity"]."g"; ?></td>
 
 </tr>
 
 <?php
-  $total_price += ($product["price"]*$product["quantity"]);
+  $total_uprice += ($product["price"]*$product["quantity"]);
+  $total_uweight += ($product["weight"]*$product["quantity"]);
   }
 ?>
 
 <tr>
   <td colspan="5" align="right">
-    <strong>Total: <?php echo "$".$total_price; ?></strong>
+    <strong>Item's Total: <?php echo "$".$total_uprice; ?></strong>
+  </td>
+  
+  <td colspan="5" align="right">
+    <strong>Total Weight: <?php echo $total_uweight."g"; ?></strong>
   </td>
 
 </tr>
@@ -134,13 +146,15 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
   <?php echo $status; ?>
 </div>
 
-<a href="./partsOrder.php">
-  <button> Continue Shopping </button>
-</a>
+<div class="buttonG">
+  <a href="./partsOrder.php">
+    <button> Continue Shopping </button>
+  </a>
 
-<a href="./purchasePage.php">
-  <button> Proceed to Purchase </button>
-</a>
+  <a href="./purchasePage.php">
+    <button> Proceed to Purchase </button>
+  </a>
+</div>
 
 </body>
 

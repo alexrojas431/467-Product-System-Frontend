@@ -94,6 +94,7 @@
                 'number'=>$result["number"],
                 'description'=>$result["description"],
                 'price'=>$result["price"],
+                'weight'=>$result["weight"],
                 'quantity'=>1,
                 'image'=>$result["pictureURL"]
                 )
