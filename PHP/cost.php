@@ -16,21 +16,22 @@
 	catch (PDOexception $e) { //catch the exception
 			echo "Connection to DB failed: " . $e->getMessage();
 	}
+
 	foreach($_SESSION["shopping_cart"] as $key => $value)
 	{
 		$weightget = "SELECT weight, price, description FROM csci467 WHERE number=?;";
 		$weightResult = $pdo->prepare($weightget);
 		$weightResult->execute(array($value['number']));
-		$srow = $weightResult->fetch()
+		$srow = $weightResult->fetch();
 		
-		$TotalW = $srow['weight']*$value['quantity']
+		$TotalW = $srow['weight']*$value['quantity'];
 		$weightBracket = "SELECT cost FROM weight WHERE minW>' . $TotalW . ' AND maxW<= '. $TotalW .';";
 		$weightBResult = $pdo->prepare($weightBracket);
 		$weightBResult->execute(array($value['Number']));
 		$Total = $weightBResult->fetch();
 		$TotalP = $srow['price']*$value['quantity'] + $Total['cost'];
 		
-		$dateOr = 'Current time: ' . date('Y-m-d H:i:s') .;
+		$dateOr = 'Current time: ' . date('Y-m-d H:i:s');
 
 		$submitOrder = "INSERT INTO orderHistory(partNum, oQuantity, partDesc, price, email, dateOr, status)
 		VALUES

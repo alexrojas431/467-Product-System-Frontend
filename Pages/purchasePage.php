@@ -9,7 +9,7 @@
 <?php
 	session_start();
  
-    require("cost.php");
+    require("Verifacation.php");
 ?>
 
 Total Price is:

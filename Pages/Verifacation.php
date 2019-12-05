@@ -26,7 +26,7 @@ $data = array(
 
         'exp' => $_POST['expireDate'], 
 
-        'amount' => $TotalP);
+        'amount' => 123);
 
 
 $options = array(
