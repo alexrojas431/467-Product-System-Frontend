@@ -7,16 +7,22 @@
 
 <h1>Purchasing Info</h1>
 
-Total Price is:
-
 <br>
+<form method="POST" action="/~z1813783/Verifacation.php">
+First Name:
+<input type="text" name="fName"><br>
+<br/>
 
-Name:
-<input type="text" name="custName"><br>
+Last Name:
+<input type="text" name="lName"><br>
 <br/>
 
 Address:
 <input type="text" name="addr"><br>
+<br/>
+
+Email address:
+<input type="text" name="email"><br>
 <br/>
 
 Credit Card Number:
@@ -32,12 +38,13 @@ CVV:
 
 <br/>
 
+<input type="submit" name="submitBtn"Complete Purchase>
+</form>
+
+
 <a href="./cartPage.php">
     <button type="button">Go Back to cart</button>
 </a>
-
-<button type="button">Complete Purchase</button>
-
 </body>
 </html>
 
