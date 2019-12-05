@@ -1,4 +1,6 @@
 <?php
+	session_start();
+ 
 	try
 	{ //exception thrown if something happens
 		$dsn = "mysql:host=blitz.cs.niu.edu;dbname=csci467";
@@ -31,7 +33,7 @@
 		$Total = $weightBResult->fetch();
 		$TotalP = $srow['price']*$value['quantity'] + $Total['cost'];
 		
-		$dateOr = 'Current time: ' . date('Y-m-d H:i:s');
+		$dateOr = 'Current time: ' . date('Y-m-d-H-i-s');
 
 		$submitOrder = "INSERT INTO orderHistory(partNum, oQuantity, partDesc, price, email, dateOr, status)
 		VALUES
