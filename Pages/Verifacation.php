@@ -11,6 +11,7 @@
 </head>
 
 <?php
+
 	session_start();
  
 	try
@@ -57,13 +58,25 @@ $wholeP = 0;
 				$orderResult->execute(array($value['number'],$value['quantity'],$srow['description'],$TotalP,$_POST['email'],$dateOr,'authroized'));
     }
 
+function getRdmStr($n) { 
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+    $randomString = ''; 
+  
+    for ($i = 0; $i < $n; $i++) { 
+        $index = rand(0, strlen($characters) - 1); 
+        $randomString .= $characters[$index]; 
+    } 
+  
+    return $randomString; 
+}
+
 $url = 'http://blitz.cs.niu.edu/CreditCard/';
 
 $data = array(
 
-        'vendor' => 'SomeVendor',
+        'vendor' => getRdmStr(10),
 
-        'trans' => '907-987654321-296',
+        'trans' =>  getRdmStr(10),
 
         'cc' => $_POST['ccNum'],
 
