@@ -9,13 +9,12 @@
 <?php
 	session_start();
  
-    require("Verifacation.php");
 ?>
 
 Total Price is:
 
 <br>
-<form method="POST" action="/~z1853137/Verifacation.php">
+<form method="POST" action="/~z1813783/Verifacation.php">
 Name:
 <input type="text" name="custName"><br>
 <br/>
