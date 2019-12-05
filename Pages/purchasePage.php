@@ -6,6 +6,11 @@
 <body>
 
 <h1>Purchasing Info</h1>
+<?php
+	session_start();
+ 
+    require("cost.php");
+?>
 
 Total Price is:
 
