@@ -4,38 +4,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-div.order {
-  width: 100%;
-  padding: 50px;
-  text-align: center;
-  background-color: blue;
-  margin-top: 20px;
-}
 
 div.scroll {
  background-color: lightblue;
- width: 800px;
- height: 500px;
+ width: 700px;
+ height: 400px;
  overflow: scroll;
 }
 </style>
 
 </head>
 <h1>Employees Only Page </h1>
-<body> // onload="showInfo()">
+<body>
 <h2>Warehouse Section </h2>
 <h3>List of Orders: </h3>
 <div class="scroll">
- <input type="radio" onclick="showInfo()" name="order" value="orderOne"> Order 1<br>
- <div class="order" id="orderDIV" style="display:none">Order Information Here</div>
-
- <button onclick="showInfo()">Order 1</button> <br>
- <div class="order" id="orderDIV" style="display:none">Other Order Information Here</div>
-
- <input type="radio" onclick="showInfo()"  name="order" value="orderTwo"> Order 2<br>
- <div class="order" id="orderDIV" style="display:none">Another Order's Information Here</div>
-
- <input type="radio" name="order" value="orderThree"> Order 3<br>
 
 	 <?php
                 require('displayOrders.php');
@@ -56,40 +39,49 @@ div.scroll {
         ?>
 
 </div>
+	<br>
+	<input type="text" name="OID"><br>
+	<button type="button" onclick="alert('Printing Shipping Label')">Print Shipping Label</button><br><br>
 
-	<button type="button">Print Shipping Label</button>
-	<button type="button">Submit Invoice</button>
-	<button type="button">Print Packing List</button>
-	<button type="button">Update Inventory</button>
+	<form method="post" action="/~z1860858/submitInvoice.php">
+	<input type="text" name="OID"><br>
+	<button type="submit" onclick="alert('Sending E-mail Confirmation to Customer')")>Submit Invoice</button><br><br>
+	</form>
 
-<ul>
-  <li>Part2 <button type="button">Print Shipping Label</button> </li>
-</ul>
+	<input type="text" name="OID"><br>
+	<button type="button" onclick="alert('Printing Packing List')">Print Packing List</button><br><br>
 
-<script>
-function showInfo() {
- var x = document.getElementById("orderDIV");
- if (x.style.display === "none") {
-  x.style.display = "block";
-  } else {
-  x.style.display = "none";
-  }
+	<form method="post" action="/~z1860858/updateInvens.php">
+	Quantity: <input type="text" name="OQ"><br>
+	Part Number: <input type="text" name="pNum"><br>
+	<button type="submit">Update Inventory</button><br><br>
+	</form>
+
+<script type="text/javascript">
+function printLabel() {
+ window.alert("Printing Order Label");
 }
+
+funtion printList() {
+ alert("Printing Packing List");
+}
+
 </script>
 
-<h2>Receiving Desk<h2>
-<h3>Receieved Products<h3>
-Part Name:
-<input type="text" name="partName"><br>
-Part ID:
-<input type="text" name="partID"><br>
-Quantity:
-<input type="text" name="qty"><br>
-<button type="button">Update Inventory</button>
+<h2>Receiving Desk</h2>
+Receieved Products
+	<form method="post" action="/~z1860858/updateInvenr.php">
+	Quantity:
+	<input type="text" name="OQ"><br>
+	Part Number:
+	<input type="text" name="pNum"><br>
+	<button type="submit">Update Inventory</button>
+	</form>
 
 <h2>Administrator<h2>
-<button type"button">Edit Shipping and Handling Fees</button>
-
+<form action="/~z1860858/467admin.php">
+<button type="submit">Edit Shipping and Handling Fees</button>
+</form>
 
 </body>
 </html>
