@@ -10,13 +10,17 @@
 Total Price is:
 
 <br>
-
+<form method="POST" action="/~z1853137/Verifacation.php">
 Name:
 <input type="text" name="custName"><br>
 <br/>
 
 Address:
 <input type="text" name="addr"><br>
+<br/>
+
+Email address:
+<input type="text" name="email"><br>
 <br/>
 
 Credit Card Number:
@@ -32,12 +36,13 @@ CVV:
 
 <br/>
 
+<input type="submit" name="submitBtn"Complete Purchase>
+</form>
+
+
 <a href="./cartPage.php">
     <button type="button">Go Back to cart</button>
 </a>
-
-<button type="button">Complete Purchase</button>
-
 </body>
 </html>
 
