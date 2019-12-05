@@ -6,10 +6,6 @@
 <body>
 
 <h1>Purchasing Info</h1>
-<?php
-	session_start();
- 
-?>
 
 Total Price is:
 
