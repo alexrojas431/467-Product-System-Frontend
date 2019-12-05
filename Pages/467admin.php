@@ -12,8 +12,8 @@
 
 
 	try { //exception thrown if something happens
-		$dsn = "mysql:host=courses;dbname=z1853137";
-		$pdo = new PDO($dsn, "z1853137", "1998Mar21");
+		$dsn = "mysql:host=courses;dbname=z1813783";
+		$pdo = new PDO($dsn, "z1813783", "1999Feb21");
 	} catch (PDOexception $e) { //catch the exception
 		echo "Connection to DB failed: " . $e->getMessage();
 	}
@@ -61,7 +61,7 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 <body>
 	<h3>Change shipping and handling fees based on lower or upper weight limit</h3>
 	<h3>Enter the weight bound in the left opening and the cost in the right</h3>
-	<form method="POST" action="/~z1853137/changeWeight.php">
+	<form method="POST" action="/~z1813783/changeWeight.php">
 		<select name="WType">	
 			<option value="minW">minW</option>
 			<option value="maxW">maxW</option>	
@@ -74,7 +74,7 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 <body>
 	<h3>Change the weight brackets</h3>
 	<h3>Enter in the weight value either min or max opposite of the one you want changed</h3>
-	<form method="POST" action="/~z1853137/changeWeightBracket.php">
+	<form method="POST" action="/~z1813783/changeWeightBracket.php">
 		<select name="WType">	
 			<option value="minW">minW</option>
 			<option value="maxW">maxW</option>	
@@ -86,7 +86,7 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 </body>
 <body>
 	<h1>Search orders</h1>
-	<form id="dateR" name="dateSearch" method="POST" action="/~z1853137/dateSearch.php" >
+	<form id="dateR" name="dateSearch" method="POST" action="/~z1813783/dateSearch.php" >
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1">
 <tr>
   <td colspan="2"><strong>Search by Date</strong></td>
@@ -107,7 +107,7 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 </form>
 </body>
 <body>
-	<form id="priceR" name="priceSearch" method="POST" action="/~z1853137/priceSearch.php" >
+	<form id="priceR" name="priceSearch" method="POST" action="/~z1813783/priceSearch.php" >
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="1">
 <tr>
   <td colspan="2"><strong>Search by price</strong></td>
@@ -129,7 +129,7 @@ $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pIn
 </body>
 <body>
 	<h1>Search by status</h1>
-	<form method="POST" action="/~z1853137/statsearch.php">
+	<form method="POST" action="/~z1813783/statsearch.php">
 		<select name="status">	
 			<option value="authorized">authorized</option>
 			<option value="shipped">shipped</option>	

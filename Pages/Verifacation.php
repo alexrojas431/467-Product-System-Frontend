@@ -48,20 +48,20 @@ $wholeP = 0;
 
 		foreach($_SESSION["shopping_cart"] as $key => $value)
 		{
-			$weightget = "SELECT weight, price, description FROM csci467 WHERE number=?;";
-			$weightResult = $pdo->prepare($weightget);
-			$weightResult->execute(array($value['number']));
-			$srow = $weightResult->fetch();
+			//$weightget = "SELECT weight, price, description FROM csci467 WHERE number=?;";
+			//$weightResult = $pdo->prepare($weightget);
+			//$weightResult->execute(array($value['number']));
+			//$srow = $weightResult->fetch();
 			
-			$TotalW = $srow['weight']*$value['quantity'];
-			$weightBracket = "SELECT cost FROM weight WHERE minW>' . $TotalW . ' AND maxW<= '. $TotalW .';";
+			$TotalW = $value['weight']*$value['quantity'];
+			$weightBracket = "SELECT cost FROM weight WHERE minW>" . $TotalW . " AND maxW<= ". $TotalW .";";
 			$weightBResult = $pdo->prepare($weightBracket);
 			$weightBResult->execute(array($value['number']));
 			$Total = $weightBResult->fetch();
-			$TotalP = $srow['price']*$value['quantity'] + $Total['cost'];
+			$TotalP = $value['price']*$value['quantity'] + $Total['cost'];
 			$wholeP = $wholeP + $TotalP;
 			
-			$dateOr = 'Current time: ' . date('Y-m-d-H-i-s');
+			//$dateOr = 'Current time: ' . date('Y-m-d H:i:s');
 
 			$submitInfo = "INSERT INTO pInfo(email, fName, lName, creditCard, addr)
 			VALUES
@@ -71,10 +71,10 @@ $wholeP = 0;
 			
 			$submitOrder = "INSERT INTO orderHistory(partNum, oQuantity, partDesc, price, email, dateOr, status)
 			VALUES
-			(?, ?, ?, ?, ?, ?, ?);";
+			(?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?);";
 			
 			$orderResult = $pdo->prepare($submitOrder);
-			$orderResult->execute(array($value['number'],$value['quantity'],$srow['description'],$TotalP,$_POST['email'],$dateOr,'authorized'));
+			$orderResult->execute(array($value['number'],$value['quantity'],$value['description'],$TotalP,$_POST['email'],'authorized'));
 			
 		}
 
@@ -131,6 +131,7 @@ $wholeP = 0;
 	}
 
 ?>
+<br/>
 <a href="./purchasePage.php">
     <button type="button">Go Back to purchase page</button>
 </a>

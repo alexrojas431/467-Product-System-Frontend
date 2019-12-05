@@ -34,6 +34,7 @@ div.scroll {
 
 <body>
 
+   <a href="./navigation.php"> <button> Back to Home </button> </a>
 <h2>Warehouse Section </h2>
 
 <h3>List of Orders: </h3>
@@ -54,9 +55,9 @@ div.scroll {
 
                 {
 
-                        $dsn = 'mysql:host=courses;dbname=z1853137';
+                        $dsn = 'mysql:host=courses;dbname=z1813783';
 
-                        $pdo = new PDO($dsn, 'z1853137', '1998Mar21');
+                        $pdo = new PDO($dsn, 'z1813783', '1999Feb21');
 
                 }
 
@@ -88,7 +89,7 @@ div.scroll {
 
 
 
-	<form method="post" action="/~z1860858/submitInvoice.php">
+	<form method="post" action="/~z1813783/submitInvoice.php">
 
 	<input type="text" name="OID"><br>
 
@@ -104,7 +105,7 @@ div.scroll {
 
 
 
-	<form method="post" action="/~z1860858/updateInvens.php">
+	<form method="post" action="/~z1813783/updateInvens.php">
 
 	Quantity: <input type="text" name="OQ"><br>
 
@@ -142,7 +143,7 @@ funtion printList() {
 
 Receieved Products
 
-	<form method="post" action="/~z1860858/updateInvenr.php">
+	<form method="post" action="/~z1813783/updateInvenr.php">
 
 	Quantity:
 
@@ -160,7 +161,7 @@ Receieved Products
 
 <h2>Administrator<h2>
 
-<form action="/~z1860858/467admin.php">
+<form action="/~z1813783/467admin.php">
 
 <button type="submit">Edit Shipping and Handling Fees</button>
 

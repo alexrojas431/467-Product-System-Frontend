@@ -5,8 +5,10 @@
         } catch (PDOexception $e) { //catch the exception
                 echo "Connection to DB failed: " . $e->getMessage();
 	}
-	$subInv = "UPDATE orderHistory SET status='shipped' WHERE orderID=?;";
-	$subInvResult = $pdo->prepare($subInv);
-	$subInvResult->execute(array($_POST['OID']));
-header("Refresh:1; url=/~z1813783/workerPage.php");
+echo $_POST['fee'];
+$handlingEdit = "UPDATE handling SET fee = ? WHERE feetype = ?;";
+$handlingResult = $pdo->prepare($handlingEdit);
+$handlingexec = $handlingResult->execute(array($_POST['fee'], 1));
+
+header("Refresh:5; url=/~z1813783/467admin.php");
 ?>
