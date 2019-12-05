@@ -7,12 +7,14 @@
 
 <h1>Purchasing Info</h1>
 
-Total Price is:
-
 <br>
 <form method="POST" action="/~z1813783/Verifacation.php">
-Name:
-<input type="text" name="custName"><br>
+First Name:
+<input type="text" name="fName"><br>
+<br/>
+
+Last Name:
+<input type="text" name="lName"><br>
 <br/>
 
 Address:

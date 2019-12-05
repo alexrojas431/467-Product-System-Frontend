@@ -34,78 +34,103 @@
 
 $wholeP = 0;
 
-	foreach($_SESSION["shopping_cart"] as $key => $value)
+	if($_POST["email"] == '' || $_POST["email"] == null ||
+		$_POST["ccNum"] == '' ||  $_POST["ccNum"] == null ||
+		$_POST["fName"] == '' ||  $_POST["fName"] == null ||
+		$_POST["lName"] == '' ||  $_POST["lName"] == null ||
+		$_POST["expireDate"] == '' ||  $_POST["expireDate"] == null ||
+		$_POST["cvv"] == '' ||  $_POST["cvv"] == null
+		)
 	{
-		$weightget = "SELECT weight, price, description FROM csci467 WHERE number=?;";
-		$weightResult = $pdo->prepare($weightget);
-		$weightResult->execute(array($value['number']));
-		$srow = $weightResult->fetch();
-		
-		$TotalW = $srow['weight']*$value['quantity'];
-		$weightBracket = "SELECT cost FROM weight WHERE minW>' . $TotalW . ' AND maxW<= '. $TotalW .';";
-		$weightBResult = $pdo->prepare($weightBracket);
-		$weightBResult->execute(array($value['number']));
-		$Total = $weightBResult->fetch();
-		$TotalP = $srow['price']*$value['quantity'] + $Total['cost'];
-        $wholeP = $wholeP + $TotalP;
-		
-		$dateOr = 'Current time: ' . date('Y-m-d-H-i-s');
+		echo "<div id='warning'> Please fill out all fields on the form </div>";
+	}
+	else{
 
-		$submitOrder = "INSERT INTO orderHistory(partNum, oQuantity, partDesc, price, email, dateOr, status)
-		VALUES
-		(?, ?, ?, ?, ?, ?, ?);";
-				$orderResult = $pdo->prepare($submitOrder);
-				$orderResult->execute(array($value['number'],$value['quantity'],$srow['description'],$TotalP,$_POST['email'],$dateOr,'authroized'));
-    }
+		foreach($_SESSION["shopping_cart"] as $key => $value)
+		{
+			$weightget = "SELECT weight, price, description FROM csci467 WHERE number=?;";
+			$weightResult = $pdo->prepare($weightget);
+			$weightResult->execute(array($value['number']));
+			$srow = $weightResult->fetch();
+			
+			$TotalW = $srow['weight']*$value['quantity'];
+			$weightBracket = "SELECT cost FROM weight WHERE minW>' . $TotalW . ' AND maxW<= '. $TotalW .';";
+			$weightBResult = $pdo->prepare($weightBracket);
+			$weightBResult->execute(array($value['number']));
+			$Total = $weightBResult->fetch();
+			$TotalP = $srow['price']*$value['quantity'] + $Total['cost'];
+			$wholeP = $wholeP + $TotalP;
+			
+			$dateOr = 'Current time: ' . date('Y-m-d-H-i-s');
 
-function getRdmStr($n) { 
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-    $randomString = ''; 
-  
-    for ($i = 0; $i < $n; $i++) { 
-        $index = rand(0, strlen($characters) - 1); 
-        $randomString .= $characters[$index]; 
-    } 
-  
-    return $randomString; 
-}
+			$submitInfo = "INSERT INTO pInfo(email, fName, lName, creditCard, addr)
+			VALUES
+			(?, ?, ?, ?, ?);";
+			$orderInfo = $pdo->prepare($submitInfo);
+			$orderInfo->execute(array($_POST['email'],$_POST['fName'],$_POST['lName'],$_POST["ccNum"],$_POST['addr']));
+			
+			$submitOrder = "INSERT INTO orderHistory(partNum, oQuantity, partDesc, price, email, dateOr, status)
+			VALUES
+			(?, ?, ?, ?, ?, ?, ?);";
+			
+			$orderResult = $pdo->prepare($submitOrder);
+			$orderResult->execute(array($value['number'],$value['quantity'],$srow['description'],$TotalP,$_POST['email'],$dateOr,'authorized'));
+			
+		}
 
-$url = 'http://blitz.cs.niu.edu/CreditCard/';
+	function getRdmStr($n) { 
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+		$randomString = ''; 
+	
+		for ($i = 0; $i < $n; $i++) { 
+			$index = rand(0, strlen($characters) - 1); 
+			$randomString .= $characters[$index]; 
+		} 
+	
+		return $randomString; 
+	}
 
-$data = array(
+	$url = 'http://blitz.cs.niu.edu/CreditCard/';
 
-        'vendor' => getRdmStr(10),
+	$data = array(
 
-        'trans' =>  getRdmStr(10),
+			'vendor' => getRdmStr(10),
 
-        'cc' => $_POST['ccNum'],
+			'trans' =>  getRdmStr(10),
 
-        'name' => $_POST['custName'], 
+			'cc' => $_POST['ccNum'],
 
-        'exp' => $_POST['expireDate'], 
+			'name' => $_POST["fName"] . " " . $_POST['lName'], 
 
-        'amount' => $wholeP);
+			'exp' => $_POST['expireDate'], 
 
-
-$options = array(
-
-    'http' => array(
-
-        'header' => array('Content-type: application/json', 'Accept: application/json'),
-
-        'method' => 'POST',
-
-        'content'=> json_encode($data)
-
-    )
-
-);
+			'amount' => $wholeP);
 
 
-$context  = stream_context_create($options);
+	$options = array(
 
-$result = file_get_contents($url, false, $context);
+		'http' => array(
 
-echo($result);
+			'header' => array('Content-type: application/json', 'Accept: application/json'),
+
+			'method' => 'POST',
+
+			'content'=> json_encode($data)
+
+		)
+
+	);
+
+
+	$context  = stream_context_create($options);
+
+	$result = file_get_contents($url, false, $context);
+
+	echo($result);
+
+	}
 
 ?>
+<a href="./purchasePage.php">
+    <button type="button">Go Back to purchase page</button>
+</a>
