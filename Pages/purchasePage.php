@@ -4,7 +4,12 @@
 </head>
 
 <body>
+<?php
 
+//  This file displays the form for the user to fill out
+//  The logic for the credit card authorization is found in the Verifacation.php
+
+?>
 <h1>Purchasing Info</h1>
 
 <br>

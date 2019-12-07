@@ -15,8 +15,22 @@
 <br>
 
 <?php
+//  This file will allow the user to remove an item and add quantity to their cart
+//  Aside from displaying the information about each item (weight, individual price, total price)
+//  It will also calculate the total weight and total price of the cart
+
 session_start();
+    
+// The status variable tells the user about the removal of a product
 $status="";
+
+//  If the remove button is clicked on this loop will go through each item in the shopping cart until it matches the part selected.
+//    This is done through matching the part number in the remove button and part number in the shopping cart
+//  Once done, the item will be removed from the cart and a notice will be given to the user
+//  If the item removed was the final item in the cart then the cart will be deleted from session storage.
+//    The user will be notified of this change; can be found near the end of the file
+//    The total price and total weight will be recalculated
+
 if (isset($_POST['action']) && $_POST['action']=="remove"){
   if(!empty($_SESSION["shopping_cart"])) {
       foreach($_SESSION["shopping_cart"] as $key => $value) {
@@ -33,6 +47,12 @@ if (isset($_POST['action']) && $_POST['action']=="remove"){
     }
 }
  
+//  Very similar logic to the remove loop above
+//  If the quantity button is clicked on this loop will go through each item in the shopping cart until it matches the part selected.
+//    This is done through matching the part number in the quantity button and part number in the shopping cart
+//  Once done, the quantity wil be change both visually and in the cart
+//    The total price and total weight (for both the item and overall) will be recalculated
+
 if (isset($_POST['action']) && $_POST['action']=="change"){
   foreach($_SESSION["shopping_cart"] as &$value){
     if($value['number'] === $_POST["part"]){
@@ -63,6 +83,8 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 </tr>
 
 <?php 
+
+//  Showing each item info inside the cart
   foreach ($_SESSION["shopping_cart"] as $product){
 ?>
 
@@ -101,7 +123,11 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
     </select>
     </form>
   </td>
+<?php
 
+//  Calculate the totals for the items
+
+?>
   <td align="center"><?php echo "$".$product["price"]; ?></td>
 
   <td align="center"><?php echo "$".$product["price"]*$product["quantity"]; ?></td>
@@ -113,6 +139,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 </tr>
 
 <?php
+//  Calculate the totals for the whole cart, later displaying them for the user
   $total_uprice += ($product["price"]*$product["quantity"]);
   $total_uweight += ($product["weight"]*$product["quantity"]);
   }

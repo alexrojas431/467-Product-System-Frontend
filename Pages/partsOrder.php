@@ -23,7 +23,10 @@
 	<div id='shoppingCart'>
 		Shopping Cart
 		<br/>
-		<?php echo $status; ?>
+		<?php
+		// The status variable tells the user about whether the product was inserted into the cart
+		echo $status;
+		?>
 		<br/>
 		<a href="./cartPage.php">
 			<button> Finalize and pay for order </button>

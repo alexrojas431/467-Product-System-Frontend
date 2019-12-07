@@ -12,6 +12,10 @@
 
 <?php
 
+//  This file will hold the payment authorization response. 
+//  Once done it will submit the relevant information into the database
+//  Such as personal info given by the user
+//  As well as the order information for each seperate part
 	session_start();
  
 	try
@@ -31,9 +35,10 @@
 	catch (PDOexception $e) { //catch the exception
 			echo "Connection to DB failed: " . $e->getMessage();
 	}
+// Calculate the price of the whole cart
+	$wholeP = 0;
 
-$wholeP = 0;
-
+//  case check if all fields have been filled out
 	if($_POST["email"] == '' || $_POST["email"] == null ||
 		$_POST["ccNum"] == '' ||  $_POST["ccNum"] == null ||
 		$_POST["fName"] == '' ||  $_POST["fName"] == null ||
@@ -46,12 +51,9 @@ $wholeP = 0;
 	}
 	else{
 
+//  Go through the cart and caculate the shipping and handling fees based on weight, as well as the adding to the wholeP
 		foreach($_SESSION["shopping_cart"] as $key => $value)
 		{
-			//$weightget = "SELECT weight, price, description FROM csci467 WHERE number=?;";
-			//$weightResult = $pdo->prepare($weightget);
-			//$weightResult->execute(array($value['number']));
-			//$srow = $weightResult->fetch();
 			
 			$TotalW = $value['weight']*$value['quantity'];
 			$weightBracket = "SELECT cost FROM weight WHERE minW>" . $TotalW . " AND maxW<= ". $TotalW .";";
@@ -63,12 +65,14 @@ $wholeP = 0;
 			
 			//$dateOr = 'Current time: ' . date('Y-m-d H:i:s');
 
+//  Submit into the personal info table in the database
 			$submitInfo = "INSERT INTO pInfo(email, fName, lName, creditCard, addr)
 			VALUES
 			(?, ?, ?, ?, ?);";
 			$orderInfo = $pdo->prepare($submitInfo);
 			$orderInfo->execute(array($_POST['email'],$_POST['fName'],$_POST['lName'],$_POST["ccNum"],$_POST['addr']));
 			
+//  Submit into the orderHistory table in the database
 			$submitOrder = "INSERT INTO orderHistory(partNum, oQuantity, partDesc, price, email, dateOr, status)
 			VALUES
 			(?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?);";
@@ -78,6 +82,7 @@ $wholeP = 0;
 			
 		}
 
+//  Make a random string for the transaction ID and vendor ID
 	function getRdmStr($n) { 
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
 		$randomString = ''; 
@@ -89,6 +94,10 @@ $wholeP = 0;
 	
 		return $randomString; 
 	}
+
+//  Using the example from the website for the credit card authorization system
+//  Using the variables from the filled out form and the wholeP to submit into the system
+//  It will then print out the message given from the system
 
 	$url = 'http://blitz.cs.niu.edu/CreditCard/';
 

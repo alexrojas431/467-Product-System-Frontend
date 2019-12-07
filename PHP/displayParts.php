@@ -1,5 +1,12 @@
 <?php
-		
+    
+// This file is called in the partsOrder.php file (The main shopping page)
+// Displays all parts into the page using the info from our own database and legacy database
+// The items are stored in an array, later stored in session storage
+// The session storage is where every file afterwards will use to get shopping cart information
+// Specifically, the cartPage and Verifacation.php files use this
+//      Session storage is used as opposed to having a table in the database so to not mess up the database
+
     #Establish database connection include functions.php file
     try
     {
@@ -31,6 +38,7 @@
         
     echo "<div id='shop'>";
     
+// Go through every part in the databases and output html
     for($i = 1; $i < 150; $i++)
     {
     //Legacy database
@@ -87,7 +95,7 @@
         $query2 = $pdo2->query($sql2);
         $result2 = $query2->fetch(PDO::FETCH_ASSOC);
         
-    // Also put every part into an array for future reference
+    // Also put every part into an array for session storage
 
         $cartArray = array(
             $result["number"]=>array(
@@ -100,6 +108,8 @@
                 )
         );
 
+    // Make the session storage if none is there
+    // Assign the array into the session storage
         if(empty($_SESSION["shopping_cart"]))
         {
             $_SESSION["shopping_cart"] = $cartArray;
@@ -110,6 +120,8 @@
         {
             $array_keys = array_keys($_SESSION["shopping_cart"]);
 
+    // Check if an item has already been added
+    // Print depending on whether or not the part was found within the array
             if(in_array($_POST["part"],$array_keys))
             {
                 $status = "<div class='box' style='color:red;'>
