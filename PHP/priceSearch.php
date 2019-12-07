@@ -7,6 +7,7 @@
         } catch (PDOexception $e) { //catch the exception
                 echo "Connection to DB failed: " . $e->getMessage();
 	}
+	//prints a table of all order entries that fall within the two prices given by the user.
 	$prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email, dateOr, status FROM orderHistory
 		INNER JOIN inventory ON orderHistory.partNum = inventory.partNum
 		INNER JOIN pInfo ON orderHistory.email = pInfo.email

@@ -15,7 +15,7 @@
                 echo "Connection to DB failed: " . $e->getMessage();
 
 	}
-
+	//prints a table of all entries in the database between the two dates provided by the user.
 	$prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email, dateOr, status FROM orderHistory
 
 			INNER JOIN inventory ON orderHistory.partNum = inventory.partNum

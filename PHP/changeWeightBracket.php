@@ -5,7 +5,7 @@
         } catch (PDOexception $e) { //catch the exception
                 echo "Connection to DB failed: " . $e->getMessage();
 	}
-echo $_POST['wChange'], $_POST['wValue'];
+//based on the switch value it changes the associated min or max weight opposite to the user supplied entry.
 switch ($_POST['WType']) {
 	case "minW":
 		echo "min";

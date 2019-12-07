@@ -7,6 +7,7 @@
         } catch (PDOexception $e) { //catch the exception
                 echo "Connection to DB failed: " . $e->getMessage();
 	}
+	//prints a table depending on it's status of shipped or authorized depending on the value passed throught the dropdown on the admin page
 switch ($_POST['status']) {
 	case "shipped":
 		$prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email, dateOr, status FROM orderHistory

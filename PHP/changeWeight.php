@@ -5,7 +5,7 @@
         } catch (PDOexception $e) { //catch the exception
                 echo "Connection to DB failed: " . $e->getMessage();
 	}
-echo $_POST['cost'], $_POST['wValue'];
+//based on the switch value it changes the handling cost based on min or max wieght that was entered.	
 switch ($_POST['WType']) {
 	case "minW":
 		echo "min";

@@ -1,5 +1,5 @@
 <?php
-
+//it adds the specified number to the proper item in the inventory table
  try { //exception thrown if something happens
 
                 $dsn = "mysql:host=courses;dbname=z1813783";

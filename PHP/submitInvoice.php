@@ -1,4 +1,5 @@
 <?php
+//just changes the specified order from authorized to shipped
  try { //exception thrown if something happens
                 $dsn = "mysql:host=courses;dbname=z1813783";
                 $pdo = new PDO($dsn, "z1813783", "1999Feb21");
