@@ -17,6 +17,7 @@
 	} catch (PDOexception $e) { //catch the exception
 		echo "Connection to DB failed: " . $e->getMessage();
 	}
+	//prints weight bracket table with related costs
 		$prepared = $pdo->query('SELECT * FROM weight');
 	        echo "<table id='Weightbrackets' border='1'>
 		<tr>
@@ -31,6 +32,7 @@
 			<td>{$maxW}</td>
 			<td>{$cost}</td></tr>";
 }
+//prints table with all the orders.
 $prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email, dateOr, status FROM orderHistory
 			INNER JOIN inventory ON orderHistory.partNum = inventory.partNum
 			INNER JOIN pInfo ON orderHistory.email = pInfo.email
