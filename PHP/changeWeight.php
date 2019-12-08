@@ -8,13 +8,13 @@
 //based on the switch value it changes the handling cost based on min or max wieght that was entered.	
 switch ($_POST['WType']) {
 	case "minW":
-		echo "min";
+		//searches based on minW
 		$weightEdit = "UPDATE weight SET cost=? WHERE minW=?;";
 		$weightResult = $pdo->prepare($weightEdit);
 		$weightResult->execute(array($_POST['cost'], $_POST['wValue']));
 		break;
 	case "maxW":
-		echo "max";
+		//searches based on maxW
 		$weightEdit = "UPDATE weight SET cost =? WHERE maxW=?;";
 		$weightResult = $pdo->prepare($weightEdit);
 		$weightResult->execute(array($_POST['cost'], $_POST['wValue']));

@@ -10,6 +10,7 @@
 	//prints a table depending on it's status of shipped or authorized depending on the value passed throught the dropdown on the admin page
 switch ($_POST['status']) {
 	case "shipped":
+	//searches shipped orders
 		$prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email, dateOr, status FROM orderHistory
 			INNER JOIN inventory ON orderHistory.partNum = inventory.partNum
 			INNER JOIN pInfo ON orderHistory.email = pInfo.email
@@ -37,6 +38,7 @@ switch ($_POST['status']) {
 }
 		break;
 	case "authorized":
+	//searches authorized orders
 		$prepared = $pdo->query('SELECT orderID, inventory.partNum, partDesc, price, pInfo.email, dateOr, status FROM orderHistory
 			INNER JOIN inventory ON orderHistory.partNum = inventory.partNum
 			INNER JOIN pInfo ON orderHistory.email = pInfo.email
