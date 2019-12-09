@@ -10,7 +10,7 @@
 
     {
 
-        $sql = 'SELECT partNum, partDesc, email, price, status FROM orderHistory;';
+        $sql = 'SELECT orderID, partNum, partDesc, email, price, status FROM orderHistory;';
 
             $query = $connection->query($sql);
 
@@ -27,6 +27,7 @@
 		echo "<tr>";
 
                 echo "<td><span id='button'><input type='radio' name ='order'></span></td>";
+                echo "<td><span id='orderID'>Order ID: ". $result["orderID"] ."</span></td>";
 
                 echo "<td><span id='desc'>Description: ". $result["partDesc"] ."</span></td>";
 

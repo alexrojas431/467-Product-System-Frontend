@@ -83,7 +83,7 @@ div.scroll {
 
 	<br>
 
-	<input type="text" name="OID"><br>
+	Enter Order ID: <input type="text" name="OID"><br>
 
 	<button type="button" onclick="alert('Printing Shipping Label')">Print Shipping Label</button><br><br>
 
@@ -91,7 +91,7 @@ div.scroll {
 
 	<form method="post" action="/~z1813783/submitInvoice.php">
 
-	<input type="text" name="OID"><br>
+	Enter Order ID: <input type="text" name="OID"><br>
 
 	<button type="submit" onclick="alert('Sending E-mail Confirmation to Customer')")>Submit Invoice</button><br><br>
 
@@ -99,7 +99,7 @@ div.scroll {
 
 
 
-	<input type="text" name="OID"><br>
+	Enter Order ID: <input type="text" name="OID"><br>
 
 	<button type="button" onclick="alert('Printing Packing List')">Print Packing List</button><br><br>
 
